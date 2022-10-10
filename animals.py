@@ -28,6 +28,7 @@ class Duck:
         self.state = self.states[0]
         self.age = 0
         self.parent = 0
+        self.name = 'duck'
 
     def __str__(self):
         return self.state + " @ " + str(self.pos)
@@ -38,7 +39,7 @@ class Duck:
         terrainColor = self.getTerrainColor(terrain, futureX, futureY)
         terrainColorBlue = terrainColor[2]
         terrainType = mapKey[terrainColorBlue]
-        print(terrainType)
+        # print(terrainType)
         if (terrainType == "wall") or (terrainType == "bush"):
             xmov = -xmov
             ymov = -ymov
@@ -112,8 +113,10 @@ class Duck:
 class Newt:
     states = ["egg", "tadpole", "adult"] 
 
-    def __init__(self, pos):
-        self.pos = pos
+    def __init__(self, position):
+        self.pos = position
+        self.state = self.states[0]
+        self.name = 'newt'
 
     def __str__(self):
         return self.state + " @ " + str(self.pos)
@@ -129,7 +132,8 @@ class Newt:
 
         else:
             speed = NEWT_SPEED
-            if self.age > :
+            #Slow speed if newt age more than 15
+            if self.age > 15:
                 speed = DUCK_SPEED / 3
 
             # Adjust Speed for Height of Terrain
@@ -204,6 +208,7 @@ class Shrimp:
 
     def __init__(self, pos):
         self.pos = pos
+        self.name = 'shrimp'
 
     def __str__(self):
         return self.state + " @ " + str(self.pos)
