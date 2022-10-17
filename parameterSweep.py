@@ -20,38 +20,45 @@
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import pandas as pd
-
+import plotly.express as px
+import numpy as np
 import app
 
 def parameterSweep(min,max):
     """
-
-    :param parameter:
-    :param min:
-    :param max:
+    Function that Creates a graph of the end state of different simulations as a parameter is changed
+    :param min: int
+    Minimum value of parameter
+    :param max: int
+    Maximum value of parameter
     :return:
     """
     results = pd.DataFrame()
     for i in range(min,max):
+        #Paremter to sweep in this example Duck Speed
+        app.DUCK_SPEED = i
+
+        #Run simulation without plotting anything
         df = app.main(False,False)
-        # df = df.loc[(df['type'] == 'duck') & (df['timestep'] == 49)]
+        #Get all end point data
         df = df.loc[(df['timestep'] == 49)]
+        rows = df.shape[0]
+
+        #Make Parameter Id column
+        df["Parameter"] = lst = [i] * rows
+
         results = pd.concat([df,results])
 
     return results
 
+#Get Parameter sweep data and drop timestep column
+parameterSweepOutput = parameterSweep(5,15)
+parameterSweepOutput = parameterSweepOutput.drop('timestep', axis=1)
 
-parameterSweepOutput = parameterSweep(10,12)
-
-# parameterSweepOutput = parameterSweepOutput.drop('timestep', axis=1)
-print(parameterSweepOutput)
-
-plt.figure();
-# parameterSweepOutput.plot(color="type");
-
-parameterSweepOutput["total"].plot(kind = 'hist')
-
-plt.show()
+#Plot Parameter sweep as line chart
+df = parameterSweepOutput
+fig = px.line(df, x="Parameter", y="total", color='type')
+fig.show()
 
 
 

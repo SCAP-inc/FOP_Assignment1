@@ -272,14 +272,14 @@ def main(summary=True,plots=True):
                     DuckEggXValues.append(c.pos[0])
                     DuckEggYValues.append(c.pos[1])
                     DuckEggZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    DuckEggSizes.append(c.getSize())
+                    DuckEggSizes.append(c.getSize()*3)
                 if c.state == "adult":
                     totalDuckAdults += 1
                     c.stepChange(terrain, heightmap, allCreatures,DUCK_SPEED)
                     DuckAdultXValues.append(c.pos[0])
                     DuckAdultYValues.append(c.pos[1])
                     DuckAdultZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    DuckAdultSizes.append(c.getSize())
+                    DuckAdultSizes.append(c.getSize()*3)
 
                     #Kill Duck if it's older than 100 timesteps
                     if c.age > 100:
@@ -294,21 +294,21 @@ def main(summary=True,plots=True):
                     NewtEggXValues.append(c.pos[0])
                     NewtEggYValues.append(c.pos[1])
                     NewtEggZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    NewtEggSizes.append(c.getSize())
+                    NewtEggSizes.append(c.getSize()*3)
                 if c.state == "tadpole":
                     totalNewtTadpoles += 1
                     c.stepChange(terrain, heightmap, allCreatures,NEWT_SPEED)
                     NewtTadpoleXValues.append(c.pos[0])
                     NewtTadpoleYValues.append(c.pos[1])
                     NewtTadpoleZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    NewtTadpoleSizes.append(c.getSize())
+                    NewtTadpoleSizes.append(c.getSize()*3)
                 if c.state == "adult":
                     totalNewtAdults += 1
                     c.stepChange(terrain, heightmap, allCreatures,NEWT_SPEED)
                     NewtAdultXValues.append(c.pos[0])
                     NewtAdultYValues.append(c.pos[1])
                     NewtAdultZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    NewtAdultSizes.append(c.getSize())
+                    NewtAdultSizes.append(c.getSize()*3)
 
                     #Kill Newt if its older than 40
                     if c.age > 40:
@@ -323,21 +323,21 @@ def main(summary=True,plots=True):
                     ShrimpEggXValues.append(c.pos[0])
                     ShrimpEggYValues.append(c.pos[1])
                     ShrimpEggZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    ShrimpEggSizes.append(c.getSize())
+                    ShrimpEggSizes.append(c.getSize()*3)
                 if c.state == "larvae":
                     totalShrimpLarvae += 1
                     c.stepChange(terrain, heightmap, allCreatures,SHRIMP_SPEED)
                     ShrimpLarvaeXValues.append(c.pos[0])
                     ShrimpLarvaeYValues.append(c.pos[1])
                     ShrimpLarvaeZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    ShrimpLarvaeSizes.append(c.getSize())
+                    ShrimpLarvaeSizes.append(c.getSize()*3)
                 if c.state == "adult":
                     totalShrimpAdults += 1
                     c.stepChange(terrain, heightmap, allCreatures,SHRIMP_SPEED)
                     ShrimpAdultXValues.append(c.pos[0])
                     ShrimpAdultYValues.append(c.pos[1])
                     ShrimpAdultZValues.append( heightmap[c.pos[0]][c.pos[1]])
-                    ShrimpAdultSizes.append(c.getSize())
+                    ShrimpAdultSizes.append(c.getSize()*3)
 
                     #Kill shrimp if its older than 30
                     if c.age > 30:
@@ -399,12 +399,12 @@ def main(summary=True,plots=True):
             #Plot Newts
             plt.scatter(NewtEggXValues, NewtEggYValues, s=NewtEggSizes, color="blue", marker=".",label="Newt Egg")  # Note plt origin is bottom left
             plt.scatter(NewtTadpoleXValues, NewtTadpoleYValues, s=NewtTadpoleSizes, color="cyan", marker=tadpole,label="Newt Tadpole")  # Note plt origin is bottom left
-            plt.scatter(NewtAdultXValues, NewtAdultYValues, s=NewtAdultSizes, color="teal", marker=newt,label="Newt Tadpole")  # Note plt origin is bottom left
+            plt.scatter(NewtAdultXValues, NewtAdultYValues, s=NewtAdultSizes, color="teal", marker=newt,label="Newt Adult")  # Note plt origin is bottom left
 
             #Plot Shrimp
-            plt.scatter(ShrimpEggXValues, ShrimpEggYValues, s=ShrimpEggSizes, color="olive", marker=".",label="Newt Egg")  # Note plt origin is bottom left
-            plt.scatter(ShrimpLarvaeXValues, ShrimpLarvaeYValues, s=ShrimpLarvaeSizes, color="yellow", marker="*",label="Newt Tadpole")  # Note plt origin is bottom left
-            plt.scatter(ShrimpAdultXValues, ShrimpAdultYValues, s=ShrimpAdultSizes, color="olivedrab", marker=shrimp,label="Newt Tadpole")  # Note plt origin is bottom left
+            plt.scatter(ShrimpEggXValues, ShrimpEggYValues, s=ShrimpEggSizes, color="olive", marker=".",label="Shrimp Egg")  # Note plt origin is bottom left
+            plt.scatter(ShrimpLarvaeXValues, ShrimpLarvaeYValues, s=ShrimpLarvaeSizes, color="yellow", marker="*",label="Shrimp Larvae")  # Note plt origin is bottom left
+            plt.scatter(ShrimpAdultXValues, ShrimpAdultYValues, s=ShrimpAdultSizes, color="olivedrab", marker=shrimp,label="Shrimp Adult")  # Note plt origin is bottom left
 
             #Add terrain Background
             ax.imshow(terrain)
